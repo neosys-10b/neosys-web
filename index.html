@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neosys - AI Business Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        :root {
+            --gold: #FFD700;
+            --black: #0A0A0A;
+        }
+
+        body {
+            background-color: var(--black);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .header {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 100px;
+        }
+
+        .logo-text {
+            color: var(--gold);
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+            background: linear-gradient(45deg, #FFD700, #FFEA00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Rest of the CSS remains the same */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            background: radial-gradient(circle at center, #1A1A1A 0%, var(--black) 100%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1s forwards;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1s 0.3s forwards;
+            color: #CCCCCC;
+        }
+
+        .cta-button {
+            padding: 1rem 2.5rem;
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1s 0.6s forwards;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .cta-button:hover {
+            background: #FFEA00;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .logo {
+                gap: 0.75rem;
+            }
+            
+            .logo img {
+                height: 40px;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <!-- Placeholder logo (replace with your logo file) -->
+            <img src="logo-placeholder.png" alt="Neosys Logo">
+            <span class="logo-text">NeoSys</span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Intelligent Automation for Modern Businesses</h1>
+            <p class="tagline">
+                Leverage cutting-edge AI solutions to streamline operations, reduce workload, 
+                and unlock unprecedented efficiency. Focus on growth while we handle the complexity.
+            </p>
+            <a href="tel:8888552266" class="cta-button">Contact Us</a>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll script remains the same
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
