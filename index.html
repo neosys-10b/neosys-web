@@ -3,171 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neosys - AI Business Solutions</title>
+    <title>NeoSys - Intelligent Automation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        :root {
-            --gold: #FFD700;
-            --black: #0A0A0A;
-        }
-
+        /* Base Styling */
         body {
-            background-color: var(--black);
+            background-color: #000000;
+            font-family: 'Manrope', sans-serif;
             color: white;
-            overflow-x: hidden;
+            margin: 0;
+            min-height: 100vh;
         }
 
-        .header {
-            padding: 2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* Enhanced Styles */
+        :root {
+            --gold: linear-gradient(45deg, #FFD700, #D4AF37, #B8860B);
+            --dark-bg: rgba(0, 0, 0, 0.95);
+        }
+
+        .dynamic-gradient {
             position: fixed;
+            width: 200vw;
+            height: 200vh;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255,215,0,0.1) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(255,215,0,0.1) 0%, transparent 30%);
+            animation: gradientFlow 40s linear infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientFlow {
+            0% { transform: translate(0%, 0%); }
+            50% { transform: translate(-50%, -50%); }
+            100% { transform: translate(0%, 0%); }
+        }
+
+        .particle-container {
+            position: relative;
+            height: 60vh;
+            margin: 5rem 0;
+            padding: 2rem;
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            z-index: 100;
+            height: 100%;
+            z-index: 1;
         }
 
-        .logo {
+        .particle-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 1rem;
+            text-align: center;
         }
 
-        .logo img {
-            height: 100px;
+        .automation-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem;
         }
 
-        .logo-text {
-            color: var(--gold);
-            font-size: 1.8rem;
-            letter-spacing: 2px;
-            font-weight: 300;
-            background: linear-gradient(45deg, #FFD700, #FFEA00);
+        .benefit-card {
+            background: var(--dark-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,215,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(255,215,0,0.1);
+        }
+
+        .code-demo {
+            background: var(--dark-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            position: relative;
+            margin: 4rem auto;
+            width: 80%;
+        }
+
+        .typing-animation {
+            font-family: 'Courier New', monospace;
+            color: #FFD700;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #FFD700;
+            animation: typing 8s steps(40) infinite;
+        }
+
+        @keyframes typing {
+            0%, 100% { width: 0; }
+            50% { width: 100%; }
+            80% { width: 100%; }
+        }
+
+        .hero {
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gold);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        /* Rest of the CSS remains the same */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            background: radial-gradient(circle at center, #1A1A1A 0%, var(--black) 100%);
-        }
-
-        .hero-content {
-            max-width: 800px;
-        }
-
-        h1 {
-            font-size: 4rem;
-            color: var(--gold);
-            margin-bottom: 2rem;
-            font-weight: 300;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeIn 1s forwards;
-        }
-
-        .tagline {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeIn 1s 0.3s forwards;
-            color: #CCCCCC;
-        }
-
-        .cta-button {
-            padding: 1rem 2.5rem;
-            background: var(--gold);
-            color: var(--black);
-            border: none;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeIn 1s 0.6s forwards;
-            text-decoration: none;
-            display: inline-block;
-            font-weight: 500;
-        }
-
-        .cta-button:hover {
-            background: #FFEA00;
-            transform: translateY(-2px);
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .tagline {
-                font-size: 1.2rem;
-            }
-            
-            .logo {
-                gap: 0.75rem;
-            }
-            
-            .logo img {
-                height: 40px;
-            }
-            
-            .logo-text {
-                font-size: 1.5rem;
-            }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="logo">
-            <!-- Placeholder logo (replace with your logo file) -->
-            <img src="logo-placeholder.png" alt="Neosys Logo">
-            <span class="logo-text">NeoSys</span>
-        </div>
-    </header>
-
+    <div class="dynamic-gradient"></div>
+    
     <section class="hero">
-        <div class="hero-content">
-            <h1>Intelligent Automation for Modern Businesses</h1>
-            <p class="tagline">
-                Leverage cutting-edge AI solutions to streamline operations, reduce workload, 
-                and unlock unprecedented efficiency. Focus on growth while we handle the complexity.
-            </p>
-            <a href="tel:9256804704" class="cta-button">Contact Us</a>
+        <h1 class="gold-gradient">NeoSys AI Automation</h1>
+        <p>Transform your business with intelligent automation</p>
+    </section>
+
+    <div class="particle-container">
+        <canvas class="particle-canvas"></canvas>
+        <div class="particle-content">
+            <h2>60% Efficiency Boost</h2>
+            <p>Average productivity increase across client organizations</p>
+        </div>
+    </div>
+
+    <section class="automation-benefits">
+        <div class="benefit-card">
+            <h3>📈 Process Automation</h3>
+            <p>AI-driven workflow optimization that learns and adapts to your business needs</p>
+            <div class="efficiency-meter" data-value="87%"></div>
+        </div>
+        <div class="benefit-card">
+            <h3>🤖 Intelligent Bots</h3>
+            <p>24/7 automated assistants handling repetitive tasks with perfect accuracy</p>
+            <div class="efficiency-meter" data-value="92%"></div>
+        </div>
+        <div class="benefit-card">
+            <h3>📊 Smart Analytics</h3>
+            <p>Real-time insights and predictive forecasting powered by machine learning</p>
+            <div class="efficiency-meter" data-value="78%"></div>
         </div>
     </section>
 
+    <div class="code-demo">
+        <div class="typing-animation">
+            // NeoSysAI automating workflows:
+            function optimizeProcess() {
+                analyzePatterns();
+                implementSolutions();
+                monitorResults();
+            }
+        </div>
+    </div>
+
     <script>
-        // Smooth scroll script remains the same
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // Interactive Particle System
+        class ParticleSystem {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.particles = [];
+                this.mouse = { x: null, y: null, radius: 50 };
+                
+                canvas.addEventListener('mousemove', e => {
+                    this.mouse.x = e.x - canvas.offsetLeft;
+                    this.mouse.y = e.y - canvas.offsetTop;
                 });
-            });
-        });
+                
+                canvas.addEventListener('click', () => this.explode());
+            }
+
+            createParticles() {
+                for(let i = 0; i < 200; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        vx: (Math.random() - 0.5) * 0.3,
+                        vy: (Math.random() - 0.5) * 0.3,
+                        size: Math.random() * 2
+                    });
+                }
+            }
+
+            explode() {
+                this.particles.forEach(p => {
+                    p.vx = (Math.random() - 0.5) * 5;
+                    p.vy = (Math.random() - 0.5) * 5;
+                });
+            }
+
+            animate() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                this.particles.forEach(p => {
+                    let dx = this.mouse.x - p.x;
+                    let dy = this.mouse.y - p.y;
+                    let distance = Math.sqrt(dx*dx + dy*dy);
+                    
+                    if(distance < this.mouse.radius) {
+                        p.x += dx * 0.1;
+                        p.y += dy * 0.1;
+                    }
+
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    
+                    if(p.x < 0 || p.x > this.canvas.width) p.vx *= -1;
+                    if(p.y < 0 || p.y > this.canvas.height) p.vy *= -1;
+
+                    this.ctx.beginPath();
+                    this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    this.ctx.fillStyle = `rgba(255,215,0,${1 - distance/200})`;
+                    this.ctx.fill();
+                });
+
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Initialize Particle System
+        const canvas = document.querySelector('.particle-canvas');
+        const resizeCanvas = () => {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        };
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const ps = new ParticleSystem(canvas);
+        ps.createParticles();
+        ps.animate();
     </script>
 </body>
 </html>
