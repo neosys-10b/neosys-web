@@ -3,253 +3,413 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeoSys - Intelligent Automation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>NEOSYS - AI Architecture Pioneers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Base Styling */
-        body {
-            background-color: #000000;
-            font-family: 'Manrope', sans-serif;
-            color: white;
+        * {
             margin: 0;
-            min-height: 100vh;
-        }
-
-        /* Enhanced Styles */
-        :root {
-            --gold: linear-gradient(45deg, #FFD700, #D4AF37, #B8860B);
-            --dark-bg: rgba(0, 0, 0, 0.95);
-        }
-
-        .dynamic-gradient {
-            position: fixed;
-            width: 200vw;
-            height: 200vh;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(255,215,0,0.1) 0%, transparent 30%),
-                radial-gradient(circle at 90% 80%, rgba(255,215,0,0.1) 0%, transparent 30%);
-            animation: gradientFlow 40s linear infinite;
-            z-index: -2;
-        }
-
-        @keyframes gradientFlow {
-            0% { transform: translate(0%, 0%); }
-            50% { transform: translate(-50%, -50%); }
-            100% { transform: translate(0%, 0%); }
-        }
-
-        .particle-container {
-            position: relative;
-            height: 60vh;
-            margin: 5rem 0;
-            padding: 2rem;
-            border: 1px solid rgba(255,215,0,0.2);
-            border-radius: 15px;
-            overflow: hidden;
+            padding: 0;
             box-sizing: border-box;
         }
 
-        .particle-canvas {
-            position: absolute;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Canvas Containers */
+        #matrix-canvas, #dna-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        .gradient-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: radial-gradient(ellipse at center, rgba(10, 10, 10, 0) 60%, rgba(10, 10, 10, 1));
+            pointer-events: none;
             z-index: 1;
         }
 
-        .particle-content {
+        .content {
             position: relative;
             z-index: 2;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
         }
 
-        .automation-benefits {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 4rem;
-        }
-
-        .benefit-card {
-            background: var(--dark-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255,215,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 30px rgba(255,215,0,0.1);
-        }
-
-        .code-demo {
-            background: var(--dark-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            position: relative;
-            margin: 4rem auto;
-            width: 80%;
-        }
-
-        .typing-animation {
-            font-family: 'Courier New', monospace;
-            color: #FFD700;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 2px solid #FFD700;
-            animation: typing 8s steps(40) infinite;
-        }
-
-        @keyframes typing {
-            0%, 100% { width: 0; }
-            50% { width: 100%; }
-            80% { width: 100%; }
-        }
-
+        /* Hero Section */
         .hero {
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+        }
+
+        .hero-content {
+            max-width: 800px;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: var(--gold);
+            font-size: 4.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ffd700, #c5a600);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #cccccc;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease 0.3s forwards;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 8rem 10%;
+        }
+
+        .feature-card {
+            background: rgba(20, 20, 20, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #ffd700, #c5a600);
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
         }
     </style>
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.150.1/build/three.module.js",
+                "three/": "https://unpkg.com/three@0.150.1/"
+            }
+        }
+    </script>
 </head>
 <body>
-    <div class="dynamic-gradient"></div>
+    <canvas id="matrix-canvas"></canvas>
+    <canvas id="dna-canvas"></canvas>
+    <div class="gradient-overlay"></div>
     
-    <section class="hero">
-        <h1 class="gold-gradient">NeoSys AI Automation</h1>
-        <p>Transform your business with intelligent automation</p>
-    </section>
+    <div class="content">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Reinventing Mobile AI</h1>
+                <p>Neosys pioneers decentralized artificial intelligence with our revolutionary edge-computing architecture. Experience the future of on-device learning powered by our proprietary neural frameworks.</p>
+                <a href="#" class="cta-button">Explore the Technology</a>
+            </div>
+        </section>
 
-    <div class="particle-container">
-        <canvas class="particle-canvas"></canvas>
-        <div class="particle-content">
-            <h2>60% Efficiency Boost</h2>
-            <p>Average productivity increase across client organizations</p>
-        </div>
-    </div>
-
-    <section class="automation-benefits">
-        <div class="benefit-card">
-            <h3>📈 Process Automation</h3>
-            <p>AI-driven workflow optimization that learns and adapts to your business needs</p>
-            <div class="efficiency-meter" data-value="87%"></div>
-        </div>
-        <div class="benefit-card">
-            <h3>🤖 Intelligent Bots</h3>
-            <p>24/7 automated assistants handling repetitive tasks with perfect accuracy</p>
-            <div class="efficiency-meter" data-value="92%"></div>
-        </div>
-        <div class="benefit-card">
-            <h3>📊 Smart Analytics</h3>
-            <p>Real-time insights and predictive forecasting powered by machine learning</p>
-            <div class="efficiency-meter" data-value="78%"></div>
-        </div>
-    </section>
-
-    <div class="code-demo">
-        <div class="typing-animation">
-            // NeoSysAI automating workflows:
-            function optimizeProcess() {
-                analyzePatterns();
-                implementSolutions();
-                monitorResults();
-            }
-        </div>
+        <section class="features">
+            <div class="feature-card">
+                <h3>Lightning-First Framework</h3>
+                <p>Ultra-efficient mobile-first architecture that outperforms cloud-dependent solutions</p>
+            </div>
+            <div class="feature-card">
+                <h3>Secure Intelligence</h3>
+                <p>Data never leaves the device with our encrypted learning protocols</p>
+            </div>
+            <div class="feature-card">
+                <h3>Adaptive Acceleration</h3>
+                <p>Hardware-optimized performance across 8000+ mobile configurations</p>
+            </div>
+        </section>
     </div>
 
     <script>
-        // Interactive Particle System
-        class ParticleSystem {
+        // Dynamic Line Animation
+        class Line {
             constructor(canvas) {
                 this.canvas = canvas;
-                this.ctx = canvas.getContext('2d');
-                this.particles = [];
-                this.mouse = { x: null, y: null, radius: 50 };
-                
-                canvas.addEventListener('mousemove', e => {
-                    this.mouse.x = e.x - canvas.offsetLeft;
-                    this.mouse.y = e.y - canvas.offsetTop;
-                });
-                
-                canvas.addEventListener('click', () => this.explode());
+                this.reset();
             }
 
-            createParticles() {
-                for(let i = 0; i < 200; i++) {
-                    this.particles.push({
-                        x: Math.random() * this.canvas.width,
-                        y: Math.random() * this.canvas.height,
-                        vx: (Math.random() - 0.5) * 0.3,
-                        vy: (Math.random() - 0.5) * 0.3,
-                        size: Math.random() * 2
-                    });
-                }
+            reset() {
+                this.angle = Math.random() * Math.PI * 2;
+                this.speed = 0.5 + Math.random() * 2;
+                this.radius = 0;
+                this.maxRadius = Math.random() * (Math.min(window.innerWidth, window.innerHeight) / 2);
+                this.hue = Math.random() * 50 + 30;
             }
 
-            explode() {
-                this.particles.forEach(p => {
-                    p.vx = (Math.random() - 0.5) * 5;
-                    p.vy = (Math.random() - 0.5) * 5;
-                });
-            }
-
-            animate() {
-                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                
-                this.particles.forEach(p => {
-                    let dx = this.mouse.x - p.x;
-                    let dy = this.mouse.y - p.y;
-                    let distance = Math.sqrt(dx*dx + dy*dy);
-                    
-                    if(distance < this.mouse.radius) {
-                        p.x += dx * 0.1;
-                        p.y += dy * 0.1;
-                    }
-
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    
-                    if(p.x < 0 || p.x > this.canvas.width) p.vx *= -1;
-                    if(p.y < 0 || p.y > this.canvas.height) p.vy *= -1;
-
-                    this.ctx.beginPath();
-                    this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    this.ctx.fillStyle = `rgba(255,215,0,${1 - distance/200})`;
-                    this.ctx.fill();
-                });
-
-                requestAnimationFrame(() => this.animate());
+            update() {
+                this.radius += this.speed;
+                if (this.radius > this.maxRadius) this.reset();
+                this.x = this.canvas.width/2 + Math.cos(this.angle) * this.radius;
+                this.y = this.canvas.height/2 + Math.sin(this.angle) * this.radius;
             }
         }
 
-        // Initialize Particle System
-        const canvas = document.querySelector('.particle-canvas');
-        const resizeCanvas = () => {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-        };
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+        class CanvasAnimation {
+            constructor() {
+                this.canvas = document.getElementById('matrix-canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.lines = [];
+                this.resize();
+                this.init();
+                window.addEventListener('resize', this.resize.bind(this));
+            }
 
-        const ps = new ParticleSystem(canvas);
-        ps.createParticles();
-        ps.animate();
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+
+            init() {
+                for(let i = 0; i < 50; i++) {
+                    this.lines.push(new Line(this.canvas));
+                }
+                this.animate();
+            }
+
+            animate() {
+                this.ctx.fillStyle = 'rgba(10, 10, 10, 0.08)';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                this.lines.forEach(line => {
+                    line.update();
+                    this.ctx.beginPath();
+                    this.ctx.strokeStyle = `hsla(${line.hue}, 80%, 50%, 0.5)`;
+                    this.ctx.lineWidth = 1.5;
+                    this.ctx.moveTo(this.canvas.width/2, this.canvas.height/2);
+                    this.ctx.lineTo(line.x, line.y);
+                    this.ctx.stroke();
+                });
+
+                requestAnimationFrame(this.animate.bind(this));
+            }
+        }
+
+        new CanvasAnimation();
+
+        // Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(30px)';
+            observer.observe(card);
+        });
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+
+        // Particle Sphere Animation
+        class ParticleSphere {
+            constructor() {
+                this.canvas = document.getElementById('matrix-canvas');
+                this.initScene();
+                this.createParticles();
+                this.animate();
+                this.addEventListeners();
+            }
+
+            initScene() {
+                this.scene = new THREE.Scene();
+                this.camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+                this.renderer = new THREE.WebGLRenderer({ 
+                    canvas: this.canvas,
+                    antialias: true,
+                    alpha: true
+                });
+                
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+                this.camera.position.z = 5;
+                
+                const ambientLight = new THREE.AmbientLight(0xffd700, 0.3);
+                this.scene.add(ambientLight);
+            }
+
+            createParticles() {
+                this.particles = new THREE.Group();
+                this.scene.add(this.particles);
+
+                const geometry = new THREE.SphereGeometry(0.03, 8, 8);
+                const material = new THREE.MeshPhongMaterial({
+                    color: 0xffd700,
+                    transparent: true,
+                    opacity: 0.8
+                });
+
+                for(let i = 0; i < 2000; i++) {
+                    const particle = new THREE.Mesh(geometry, material);
+                    const phi = Math.acos(-1 + (2 * i) / 2000);
+                    const theta = Math.sqrt(2000 * Math.PI) * phi;
+                    particle.position.setFromSphericalCoords(2.5, phi, theta);
+                    particle.basePosition = particle.position.clone();
+                    this.particles.add(particle);
+                }
+            }
+
+            animate() {
+                this.particles.rotation.y += 0.001;
+                this.particles.children.forEach(particle => {
+                    particle.position.x = particle.basePosition.x + Math.sin(Date.now() * 0.001 + particle.basePosition.x) * 0.2;
+                    particle.position.z = particle.basePosition.z + Math.cos(Date.now() * 0.001 + particle.basePosition.z) * 0.2;
+                });
+                this.renderer.render(this.scene, this.camera);
+                requestAnimationFrame(this.animate.bind(this));
+            }
+
+            addEventListeners() {
+                window.addEventListener('resize', this.onWindowResize.bind(this));
+            }
+
+            onWindowResize() {
+                this.camera.aspect = window.innerWidth / window.innerHeight;
+                this.camera.updateProjectionMatrix();
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+        }
+
+        // DNA Structure Animation
+        class DNAStructure {
+            constructor() {
+                this.container = document.getElementById('dna-canvas');
+                this.initScene();
+                this.createDNA();
+                this.animate();
+                this.addEventListeners();
+            }
+
+            initScene() {
+                this.scene = new THREE.Scene();
+                this.camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+                this.renderer = new THREE.WebGLRenderer({ 
+                    canvas: this.container,
+                    antialias: true,
+                    alpha: true
+                });
+                
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+                this.camera.position.z = 15;
+                
+                const ambient = new THREE.AmbientLight(0xffd700, 0.3);
+                this.scene.add(ambient);
+                
+                const pointLight = new THREE.PointLight(0xffd700, 1.5);
+                pointLight.position.set(5, 5, 5);
+                this.scene.add(pointLight);
+            }
+
+            createDNA() {
+                this.dna = new THREE.Group();
+                const segments = 50;
+                const radius = 2;
+                const helixRadius = 0.1;
+                const crossbarLength = 1.5;
+
+                for(let i = 0; i < segments; i++) {
+                    const angle = (i / segments) * Math.PI * 4;
+                    const strandGeometry = new THREE.CylinderGeometry(helixRadius, helixRadius, 0.2);
+                    const material = new THREE.MeshPhongMaterial({
+                        color: 0xffd700,
+                        emissive: 0x443300,
+                        specular: 0xffffff,
+                        shininess: 100
+                    });
+
+                    const leftStrand = new THREE.Mesh(strandGeometry, material);
+                    leftStrand.position.x = radius * Math.cos(angle);
+                    leftStrand.position.y = radius * Math.sin(angle);
+                    leftStrand.position.z = i * 0.5;
+
+                    const rightStrand = leftStrand.clone();
+                    rightStrand.position.x = -leftStrand.position.x;
+                    rightStrand.position.y = -leftStrand.position.y;
+
+                    const crossbarGeometry = new THREE.BoxGeometry(crossbarLength, 0.1, 0.1);
+                    const crossbar = new THREE.Mesh(crossbarGeometry, material);
+                    crossbar.position.z = i * 0.5;
+                    crossbar.rotation.z = angle;
+
+                    this.dna.add(leftStrand, rightStrand, crossbar);
+                }
+
+                this.scene.add(this.dna);
+            }
+
+            animate() {
+                this.dna.rotation.y += 0.005;
+                this.dna.rotation.x += 0.001;
+                this.renderer.render(this.scene, this.camera);
+                requestAnimationFrame(this.animate.bind(this));
+            }
+
+            addEventListeners() {
+                window.addEventListener('resize', this.onWindowResize.bind(this));
+                document.addEventListener('mousemove', this.onMouseMove.bind(this));
+            }
+
+            onWindowResize() {
+                this.camera.aspect = window.innerWidth / window.innerHeight;
+                this.camera.updateProjectionMatrix();
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            onMouseMove(event) {
+                const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+                this.dna.rotation.x = mouseY * 0.5;
+                this.dna.rotation.y = mouseX * 0.5;
+            }
+        }
+
+        // Initialize both Three.js scenes
+        new ParticleSphere();
+        new DNAStructure();
     </script>
 </body>
 </html>
